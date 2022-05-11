@@ -1,0 +1,5 @@
+project: rnshah9/mayhem-dasm
+target: dasm
+
+cmds:
+  - cmd: /dasm/bin/dasm @@
