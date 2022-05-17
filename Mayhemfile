@@ -1,5 +1,8 @@
 project: rnshah9/mayhem-dasm
 target: dasm
+image: ghcr.io/rnshah9/playground:dasm
+tests:
+  - file://test
 
 cmds:
   - cmd: /dasm/bin/dasm @@
