@@ -1,6 +1,6 @@
-project: rnshah9/mayhem-dasm
+project: dasm
 target: dasm
-tests:
+testsuite:
   - file://test
 
 cmds:
