@@ -4,4 +4,4 @@ testsuite:
   - file://test
 
 cmds:
-  - cmd: /dasm/bin/dasm @@
+  - cmd: /dasm @@
