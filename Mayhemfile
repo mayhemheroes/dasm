@@ -1,0 +1,7 @@
+project: dasm
+target: dasm
+testsuite:
+  - file://test
+
+cmds:
+  - cmd: /dasm/bin/dasm @@
