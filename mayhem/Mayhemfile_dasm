@@ -1,0 +1,17 @@
+# Mayhem target `dasm` — the DASM macro assembler CLI.
+#
+# Same code path as the original file-input target (`dasm <file>`), but the binary is built with AFL
+# instrumentation (afl-clang-fast; see mayhem/build.sh) so Mayhem gets real EDGE coverage over the
+# assembler instead of binary-only tracing. Each input is assembled in a fresh forked process, so
+# DASM's heavy global state resets every run. The original target slug `dasm` is preserved.
+project: dasm
+target: dasm
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/dasm/testsuite
+
+cmds:
+  # -o writes the assembled output to /tmp (writable) rather than a.out in the CWD, so the target never
+  # depends on a writable working dir under the read-only image mount. @@ is the input assembly file.
+  - cmd: /mayhem/dasm @@ -o/tmp/dasm.out
