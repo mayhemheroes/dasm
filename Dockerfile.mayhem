@@ -1,0 +1,11 @@
+FROM --platform=linux/amd64 ubuntu:20.04 as builder
+
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y make gcc
+
+COPY . /dasm
+WORKDIR /dasm
+RUN make -j8
+
+FROM ubuntu:20.04 as package
+COPY --from=builder /dasm/bin/dasm /
